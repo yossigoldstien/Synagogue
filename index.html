@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<html lang="he" dir="rtl">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>בית הכנסת המרכזי יד בנימין</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@300;400;600;700;900&family=Assistant:wght@300;400;600;700&family=Suez+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:        #C9A84C;
+    --gold-light:  #E8D08A;
+    --gold-dim:    #9A7E40;
+    --navy:        #1B3A5C;
+    --navy-mid:    #22486E;
+    --navy-panel:  #2A5580;
+    --navy-card:   #306090;
+    --text-main:   #EFF6FF;
+    --text-dim:    #A8C4E0;
+    --text-bright: #FFFFFF;
+    --divider:     rgba(201,168,76,0.3);
+    --red-alert:   #E05C4B;
+    --navy-deep:   #1a2f47;
+  }
+
+  /* ── COLOR THEME OPTIONS ──────────────────────────────────────────
+     Default (no class) = Navy & Gold, defined in :root above.
+     Add one of these classes to <body> to preview an alternate palette.
+     Every panel/card/text color in the page is driven by these
+     variables, so switching the class re-colors the whole display. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body.theme-emerald {
+    --gold:        #C9A84C;
+    --gold-light:  #E8D08A;
+    --gold-dim:    #9A7E40;
+    --navy:        #123832;
+    --navy-mid:    #1B4F45;
+    --navy-panel:  #235F52;
+    --navy-card:   #2C7566;
+    --text-main:   #EFFFF8;
+    --text-dim:    #A8D8C4;
+    --text-bright: #FFFFFF;
+    --divider:     rgba(201,168,76,0.3);
+    --red-alert:   #E05C4B;
+    --navy-deep:   #0d211d;
+  }
+  body.theme-burgundy {
+    --gold:        #C7C2B8;
+    --gold-light:  #EDEAE2;
+    --gold-dim:    #9C978C;
+    --navy:        #3B1220;
+    --navy-mid:    #4C1B2C;
+    --navy-panel:  #5E2536;
+    --navy-card:   #723044;
+    --text-main:   #FDF3F0;
+    --text-dim:    #D9B8BF;
+    --text-bright: #FFFFFF;
+    --divider:     rgba(199,194,184,0.3);
+    --red-alert:   #E8846B;
+    --navy-deep:   #2a0c15;
+  }
+  body.theme-charcoal {
+    --gold:        #C77B4A;
+    --gold-light:  #E3A67B;
+    --gold-dim:    #96572E;
+    --navy:        #1E1E1E;
+    --navy-mid:    #2A2A2A;
+    --navy-panel:  #333333;
+    --navy-card:   #3D3D3D;
+    --text-main:   #F5F0EA;
+    --text-dim:    #BFB6AC;
+    --text-bright: #FFFFFF;
+    --divider:     rgba(199,123,74,0.3);
+    --red-alert:   #E05C4B;
+    --navy-deep:   #141414;
+  }
+  body.theme-royal {
+    --gold:        #D4AF37;
+    --gold-light:  #F0D975;
+    --gold-dim:    #A6862B;
+    --navy:        #2A1B4A;
+    --navy-mid:    #37235F;
+    --navy-panel:  #452C74;
+    --navy-card:   #55368C;
+    --text-main:   #F5F0FF;
+    --text-dim:    #C3B3E0;
+    --text-bright: #FFFFFF;
+    --divider:     rgba(212,175,55,0.3);
+    --red-alert:   #E05C4B;
+    --navy-deep:   #1c1230;
+  }
+  body.theme-sapphire {
+    --gold:        #9FB8D9;
+    --gold-light:  #D3E2F2;
+    --gold-dim:    #6E88AC;
+    --navy:        #0B1F3A;
+    --navy-mid:    #12305A;
+    --navy-panel:  #1A4176;
+    --navy-card:   #20517E;
+    --text-main:   #EFF6FF;
+    --text-dim:    #A8C4E0;
+    --text-bright: #FFFFFF;
+    --divider:     rgba(159,184,217,0.3);
+    --red-alert:   #E05C4B;
+    --navy-deep:   #06111f;
+  }
+  body.theme-teal-rose {
+    --gold:        #E3A9A0;
+    --gold-light:  #F3D2CC;
+    --gold-dim:    #B57A72;
+    --navy:        #0E3B36;
+    --navy-mid:    #154F48;
+    --navy-panel:  #1D655C;
+    --navy-card:   #257A6E;
+    --text-main:   #F5FFFC;
+    --text-dim:    #A8D9CE;
+    --text-bright: #FFFFFF;
+    --divider:     rgba(227,169,160,0.3);
+    --red-alert:   #E05C4B;
+    --navy-deep:   #082420;
+  }
+  body.theme-slate {
+    --gold:        #88C0D0;
+    --gold-light:  #BFE3EC;
+    --gold-dim:    #5E96A6;
+    --navy:        #2E3440;
+    --navy-mid:    #3B4252;
+    --navy-panel:  #434C5E;
+    --navy-card:   #4C566A;
+    --text-main:   #ECEFF4;
+    --text-dim:    #B8C4D6;
+    --text-bright: #FFFFFF;
+    --divider:     rgba(136,192,208,0.3);
+    --red-alert:   #E0685C;
+    --navy-deep:   #232830;
+  }
+  body.theme-wine {
+    --gold:        #D9C08A;
+    --gold-light:  #EDE0BE;
+    --gold-dim:    #A8935F;
+    --navy:        #4A1220;
+    --navy-mid:    #5C1A2B;
+    --navy-panel:  #6E2436;
+    --navy-card:   #832E42;
+    --text-main:   #FDF6F0;
+    --text-dim:    #DDB8C2;
+    --text-bright: #FFFFFF;
+    --divider:     rgba(217,192,138,0.3);
+    --red-alert:   #F0846F;
+    --navy-deep:   #2e0a12;
+  }
+  body.theme-ivory {
+    /* Light theme — inverted palette (dark text on a cream background) */
+    --gold:        #8B5E34;
+    --gold-light:  #B98A54;
+    --gold-dim:    #6B4726;
+    --navy:        #F2E9D8;
+    --navy-mid:    #EAE0CB;
+    --navy-panel:  #E2D5BD;
+    --navy-card:   #D9C9AE;
+    --text-main:   #2B2318;
+    --text-dim:    #6B5D48;
+    --text-bright: #1A1408;
+    --divider:     rgba(139,94,52,0.3);
+    --red-alert:   #B94A3A;
+    --navy-deep:   #e6d9be;
+  }
+
+  body {
+    font-family: 'Assistant', sans-serif;
+    background: var(--navy);
+    color: var(--text-main);
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-deep) 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 10px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    position: relative;
+  }
+  header::before { display: none; }
+  .header-parasha {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Suez One', serif;
+    font-size: 2.1rem;
+    font-weight: 400;
+    color: var(--gold-light);
+    text-shadow: 0 2px 18px rgba(201,168,76,0.45);
+    white-space: nowrap;
+  }
+  .header-title {
+    font-family: 'Suez One', serif;
+    font-size: 2.1rem;
+    font-weight: 400;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 18px rgba(201,168,76,0.45);
+    position: relative;
+    left: 8px;
+  }
+  .header-dates {
+    text-align: left;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .header-dates .heb-date {
+    font-family: 'Noto Serif Hebrew', serif;
+    font-size: 1rem;
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  /* ── MAIN GRID ── */
+  main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .panel {
+    border-left: 1px solid var(--divider);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+  }
+  .panel:last-child { border-left: none; }
+
+  .panel-header {
+    background: linear-gradient(180deg, var(--navy-panel) 0%, var(--navy-mid) 100%);
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--gold-dim);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-header h2 {
+    font-family: 'Suez One', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .title-break { display: inline; }
+
+  .panel-body {
+    flex: 1;
+    overflow: hidden;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 0;
+  }
+
+  /* ── ZMANIM ── */
+  .zman-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .zman-row.highlight {
+    background: rgba(201,168,76,0.12);
+    border-color: var(--gold-dim);
+  }
+  .zman-row.next-zman {
+    background: rgba(201,168,76,0.2);
+    border-color: var(--gold);
+    animation: pulse-gold 2s ease-in-out infinite;
+  }
+  @keyframes pulse-gold {
+    0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    50%      { box-shadow: 0 0 8px 2px rgba(201,168,76,0.3); }
+  }
+  .zman-name {
+    font-size: 0.84rem;
+    color: var(--text-main);
+    font-family: 'Assistant', sans-serif;
+    font-weight: 400;
+  }
+  .zman-time {
+    font-family: 'Noto Serif Hebrew', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    direction: ltr;
+  }
+  .zman-row.next-zman .zman-name,
+  .zman-row.next-zman .zman-time { color: #FFE88A; }
+
+  /* ── PRAYER TIMES ── */
+  .prayer-section { margin-bottom: 10px; }
+  .prayer-section-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    padding: 4px 0 4px 0;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 6px;
+  }
+  .prayer-section-title--shabbat {
+    margin-top: 1em;
+  }
+  .prayer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 5px;
+  }
+  .prayer-row:nth-child(odd) { background: rgba(255,255,255,0.03); }
+  .prayer-name-wrap {
+    display: block;
+    text-align: right;
+  }
+  .prayer-name {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    font-family: 'Assistant', sans-serif;
+    font-weight: 400;
+  }
+  .prayer-category {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-family: 'Assistant', sans-serif;
+  }
+  .prayer-time {
+    font-family: 'Noto Serif Hebrew', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    direction: ltr;
+  }
+  .prayer-note {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-right: 6px;
+  }
+
+  /* ── ANNOUNCEMENTS ── */
+  .announcements-wrapper {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    min-height: 0;
+  }
+  .announcements-wrapper::before,
+  .announcements-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 40px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .announcements-wrapper::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--navy-mid), transparent);
+  }
+  .announcements-wrapper::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--navy-mid), transparent);
+  }
+
+  .announcements-wrapper.no-scroll::before,
+  .announcements-wrapper.no-scroll::after {
+    display: none;
+  }
+
+  .announcements-scroll {
+    position: absolute;
+    width: 100%;
+    animation: scroll-up linear infinite;
+    padding: 40px 0;
+  }
+  @keyframes scroll-up {
+    0%   { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+  }
+
+  .announcement-card {
+    background: var(--navy-card);
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .announcement-card.urgent {
+    border-color: var(--red-alert);
+    background: rgba(224,92,75,0.1);
+  }
+  .announcement-card.shabbat {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+  .ann-date {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+    direction: ltr;
+    text-align: left;
+  }
+  .ann-title {
+    font-family: 'Suez One', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .ann-body {
+    font-size: 0.84rem;
+    color: var(--text-main);
+    line-height: 1.7;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 300;
+  }
+  .ann-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .ann-tag.urgent { background: var(--red-alert); color: #fff; }
+  .ann-tag.shabbat { background: var(--gold); color: var(--navy); }
+  .ann-tag.event  { background: var(--navy-panel); color: var(--gold); border: 1px solid var(--gold-dim); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 2px solid var(--gold);
+    padding: 8px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .live-clock {
+    font-family: 'Suez One', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--gold);
+    direction: ltr;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 24px rgba(201,168,76,0.5);
+  }
+  .footer-info {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-align: center;
+    line-height: 1.8;
+    font-family: 'Assistant', sans-serif;
+  }
+  .footer-day {
+    font-family: 'Suez One', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--gold-light);
+  }
+  .next-prayer {
+    text-align: center;
+    font-family: 'Suez One', serif;
+    direction: rtl;
+  }
+  .next-prayer-line1 {
+    font-size: 2.4rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 24px rgba(201,168,76,0.5);
+    line-height: 1.1;
+  }
+  .next-prayer-line2 {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    font-family: 'Assistant', sans-serif;
+    margin-top: 2px;
+  }
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #4CAF50;
+    display: inline-block;
+    margin-left: 6px;
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+  }
+
+  /* Loading / error states */
+  .loading-text {
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+  }
+  .error-text {
+    color: var(--red-alert);
+    font-size: 0.78rem;
+    text-align: center;
+    padding: 10px;
+  }
+
+  /* Shabbat mode */
+  body.shabbat-mode {
+    --gold: #D4AF5A;
+  }
+  body.shabbat-mode header {
+    background: linear-gradient(135deg, #1a2a1a 0%, #1f3320 100%);
+    border-bottom-color: #6B9E6B;
+  }
+
+  /* ── MOBILE ── */
+  @media (min-width: 601px) {
+    html {
+      font-size: 175%; /* 1.75x all rem-based font sizes on computer/desktop screens */
+    }
+    /* These three keep effectively 1.5x scale instead of the global 1.75x
+       (1.5 / 1.75 = 0.857142857 applied to their original rem values) */
+    .header-title,
+    .header-parasha {
+      font-size: 1.8rem; /* was 2.1rem, now effectively 1.5x base */
+    }
+    .next-prayer-line1 {
+      font-size: 2.06rem; /* was 2.4rem, now effectively 1.5x base */
+    }
+  }
+
+  @media (max-width: 600px) {
+    .header-title {
+      font-size: 1.1rem;
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      white-space: normal;
+      width: 120px;
+      line-height: 1.3;
+    }
+    .title-break {
+      display: block;
+    }
+    .header-parasha {
+      font-size: 1rem;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .header-dates {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: left;
+    }
+    header {
+      padding: 8px 12px;
+      min-height: 60px;
+    }
+    .panel-header {
+      padding: 6px 10px;
+      min-height: 52px;
+    }
+    .panel-header h2 {
+      font-size: 0.85rem;
+      line-height: 1.3;
+    }
+    .panel-icon {
+      font-size: 0.85rem;
+    }
+    .panel-body {
+      padding: 6px 8px;
+      gap: 3px;
+    }
+    .zman-row {
+      padding: 4px 6px;
+    }
+    .zman-name {
+      font-size: 0.68rem;
+    }
+    .zman-time {
+      font-size: 0.82rem;
+    }
+    .prayer-row {
+      padding: 4px 6px;
+    }
+    .prayer-name {
+      font-size: 0.75rem;
+    }
+    .prayer-time {
+      font-size: 0.85rem;
+    }
+    .prayer-section-title {
+      font-size: 0.9rem;
+    }
+    .announcement-card {
+      padding: 8px 10px;
+      margin-bottom: 8px;
+    }
+    .ann-title {
+      font-size: 0.85rem;
+    }
+    .ann-body {
+      font-size: 0.72rem;
+    }
+    footer {
+      padding: 5px 12px;
+    }
+    .live-clock {
+      font-size: 1.5rem;
+    }
+    .next-prayer-line1 {
+      font-size: 1.5rem;
+    }
+    .next-prayer-line2 {
+      font-size: 0.75rem;
+    }
+    .footer-day {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-title" id="header-title">בית הכנסת<span class="title-break"> </span>המרכזי</div>
+  <div class="header-parasha" id="parasha-header"></div>
+  <div class="header-dates">
+    <div class="heb-date" id="heb-date">טוען תאריך...</div>
+    <div id="greg-date"></div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <!-- PANEL 1: ZMANIM -->
+  <div class="panel">
+    <div class="panel-header" id="left-panel-header">
+      <span class="panel-icon" id="left-panel-icon">🌅</span>
+      <h2 id="left-panel-title">זמני היום</h2>
+    </div>
+    <div class="panel-body" id="zmanim-body">
+      <div class="loading-text">טוען זמנים...</div>
+    </div>
+    <div class="panel-body" id="shiurim-body" style="display:none">
+      <div class="loading-text">טוען שיעורים...</div>
+    </div>
+  </div>
+
+  <!-- PANEL 2: PRAYER TIMES -->
+  <div class="panel">
+    <div class="panel-header">
+      <span class="panel-icon">🕍</span>
+      <h2 id="prayer-panel-title">זמני תפילה</h2>
+    </div>
+    <div class="panel-body" style="padding:0; position:relative;">
+      <div class="announcements-wrapper" id="prayer-wrapper">
+        <div class="announcements-scroll" id="prayer-body">
+          <div class="loading-text">טוען זמני תפילה...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 3: ANNOUNCEMENTS -->
+  <div class="panel">
+    <div class="panel-header">
+      <span class="panel-icon">📢</span>
+      <h2>הודעות ואירועים</h2>
+    </div>
+    <div class="panel-body" style="padding:0; position:relative;">
+      <div class="announcements-wrapper" id="ann-wrapper">
+        <div class="announcements-scroll" id="ann-scroll">
+          <div class="loading-text">טוען הודעות...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="live-clock" id="live-clock">00:00:00</div>
+    <div id="footer-day" class="footer-day"></div>
+  </div>
+  <div class="footer-info">
+    <div class="next-prayer" id="next-prayer-box">
+      <div class="next-prayer-line1" id="next-prayer-name">—</div>
+      <div class="next-prayer-line2" id="next-prayer-time"></div>
+    </div>
+  </div>
+  <div style="text-align:left; font-size:0.75rem; color:var(--text-dim); line-height:1.8;">
+    <div id="shabbat-times-footer"></div>
+    <div><span class="status-dot" id="status-dot"></span> <span id="last-update">טוען...</span></div>
+  </div>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════
+// CONFIGURATION — עדכן כאן את הפרטים שלך
+// ══════════════════════════════════════════════
+const CONFIG = {
+  // Google Sheets
+  SHEET_ID:      '1NIvizMd42MrT_iQ_sAWtorI9W2VqjzQ6f-FxqQEBf00',
+  PRAYER_RANGE:       'PrayerTimes!A2:D51',
+  PRAYER_RANGE_SHABBAT: 'PrayerTimes!E2:I51',
+  ANN_RANGE:     'Announcements!A2:E51',
+  SHIURIM_RANGE: 'שיעורים!A2:F51',
+  HAG_RANGE:     'חג!A2:E51',
+  SETTINGS_RANGE: 'Settings!A2:J2',
+
+  // Service Account
+  SERVICE_ACCOUNT_EMAIL: 'beit-knesset-display@beit-knesset-display.iam.gserviceaccount.com',
+  PRIVATE_KEY: "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQCqBl7skDLCQT0W\n8i5QEXGGASspA8osLRT1lXU4Du7ddtpRnvZVXZ/SDjPSoGKGesyPq5F8UHdICxur\nGe19++4Et9UQRS0nUeQCLgRgZxBqdDuAZyDpDBI3xQt0QVO8vpmovkVLvBolz9qW\nwJKFGmEG2DuHEvIh/E8esuqujgDfsf69Rc9zGwe4GDyKg4GWClXNiNJHw9/ZEf6k\n4hRWhv+vH2ALyLvcdu/mqAe4AxZdDFwg7d7Bnhz4iNmlxjxGSs2cevND49K17kId\noBLmupJClvtNAfDevVo43zBNrCHDMiEg5WaY99GgTd+w4AAy6P7pSLp/JFcZXPjo\n6ogZCHxhAgMBAAECgf8sH9siqYmCwEuKWO+L9/ruO/9ndYRSUqDN2yvAkJ+M+ftO\nk2J6ZQHFEcqBLv5iyBuubWgkSv2pxLg5f1ETEP6EWvEAd/Nv8OCrcCXSnuyzs9Z9\nTEZONMPFlW2TjiCdKxnVoQt6zCY9CeRAm1lrEZ18mUFZnKEaENC3ttcQ1emEI9EZ\nDWDe79AuOPVV0z4qU07UIC1RptSTL9PaewtZPFc/GJ74k869kcjRVQjpXZ5kQMqq\n0XKNpS6KNs9iG/uVfs291Kw+UwOcmv97PctMc16EbFG8EUmyNs9mjDhbmV9+javE\nTDOspQBw1XmplCBVXxtjvwU1POzjPhWuUHhrhzECgYEA1Oc2wadLQPY2Y9o/v2Rn\n9YJ5mBdYyPNFMih4IOOPRZ4rVTYvJffhF0cB7MLcrSTmFGrGzMtljvF0AjadV1IT\n5sqqusaC/90R7eXX9O1Y9zb8au5txYaYJRfPKgd9635n8WCC+h6Xk6nY0tSP+vZB\nd8xJFNezBFnnz/z5hmikCtECgYEAzHEsxGYsBtjdN5fP3D1ppNE3Lte7MP9C8HR7\nrzr62a7wN9nknRjWSrqnZWXCWcc2rDPsWQUJK0weVIfLPz3+BH34C+Q5DtGoINPh\nEJMMq03ovYTTLfDSlEvBSk+L98Zl2Mhz4lm7zO03eyyKoh0dR/kzDKoPRjjpGsRa\nY0jXnJECgYBsEwLkwvucel+ZyIxbp6huJFF9NzzGpVcW4xw39cwg1u3AT8UXTQFi\nQ5VijnhfHD//VUSdaRKgwUjWZsrwLKYVngOU1HhjUeFsFiTOHD3xIGR6E5Z9kplh\nGvj6qNru1DgHe6qBNU5Ukv+R5n1ANAl/up/OiMBDETBvkEdKR4weQQKBgQCIRMuF\nIWEpMzXIj20iLOEU1csFcxA3qX1RzyJ9+z8nB57ga2EhgWOcretT/87ajpmXkIhy\nEZQ6AuOYjmbgAY8mKVzDeFy7zu1U7EVxCcMBD84ZPMaSMZn69L+iq4DtJ5XNOFdd\nwVgXUOqRNHA3fFZ/GdB4GYZS1S4zBDwHP49PsQKBgBw2S7CySwXvlsABHZ8M3UdC\nCw8nCrVWjr7cUFUwFfp/oCUZHO410GCcBZQ6Msi+T+UoXTRqHKaytnrJhfiq/93g\nqdLMTiQDAEzrso6xEWPf7yvyLmvm9QOcw8IBUalqw7a+a5dvP/GavIsu8EWLh+uG\nFKnTsVoBCVV7/jVnQVRq\n-----END PRIVATE KEY-----\n",
+
+  // myzmanim — ברירת מחדל (יד בנימין). ניתן לשנות דרך גיליון Settings (עמודות E/F) בלי לגעת בקוד.
+  MYZMANIM_LAT:   31.9167,
+  MYZMANIM_LNG:   34.9167,
+  MYZMANIM_TZ_ID: 281,
+
+  SCROLL_SPEED: 40,
+};
+
+// ══════════════════════════════════════════════
+// MULTI-TENANT: which synagogue's sheet is this screen showing?
+// Resolution order: ?sheet=... URL param  →  localStorage (remembered from a
+// previous load with the param)  →  CONFIG.SHEET_ID (single-tenant default).
+// This lets one deployed copy of this file serve any synagogue: open it once
+// with ?sheet=THEIR_SHEET_ID on the TV, and it's remembered from then on —
+// no need to keep the param in the bookmarked/kiosk URL.
+// ══════════════════════════════════════════════
+const LOCAL_STORAGE_SHEET_KEY = 'beitknesset_display_sheet_id';
+
+function resolveActiveSheetId() {
+  const urlParam = new URLSearchParams(window.location.search).get('sheet');
+  if (urlParam) {
+    try { localStorage.setItem(LOCAL_STORAGE_SHEET_KEY, urlParam); } catch (e) { /* ignore */ }
+    return urlParam;
+  }
+  try {
+    const stored = localStorage.getItem(LOCAL_STORAGE_SHEET_KEY);
+    if (stored) return stored;
+  } catch (e) { /* ignore */ }
+  return CONFIG.SHEET_ID;
+}
+
+const ACTIVE_SHEET_ID = resolveActiveSheetId();
+
+// ══════════════════════════════════════════════
+// JWT / SERVICE ACCOUNT AUTH
+// ══════════════════════════════════════════════
+async function getAccessToken() {
+  const header  = { alg: 'RS256', typ: 'JWT' };
+  const now     = Math.floor(Date.now() / 1000);
+  const claim   = {
+    iss:   CONFIG.SERVICE_ACCOUNT_EMAIL,
+    scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
+    aud:   'https://oauth2.googleapis.com/token',
+    iat:   now,
+    exp:   now + 3600,
+  };
+
+  const b64 = obj => btoa(JSON.stringify(obj))
+    .replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+
+  const unsigned = `${b64(header)}.${b64(claim)}`;
+
+  // Import private key
+  const pemBody  = CONFIG.PRIVATE_KEY
+    .replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\n/g,'');
+  const der      = Uint8Array.from(atob(pemBody), c => c.charCodeAt(0));
+  const key      = await crypto.subtle.importKey(
+    'pkcs8', der.buffer,
+    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
+    false, ['sign']
+  );
+
+  const sig = await crypto.subtle.sign(
+    'RSASSA-PKCS1-v1_5', key,
+    new TextEncoder().encode(unsigned)
+  );
+
+  const sigB64 = btoa(String.fromCharCode(...new Uint8Array(sig)))
+    .replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+
+  const jwt = `${unsigned}.${sigB64}`;
+
+  const resp = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${jwt}`,
+  });
+  const data = await resp.json();
+  return data.access_token;
+}
+
+// ══════════════════════════════════════════════
+// HEBREW DAYS & DATE UTILS
+// ══════════════════════════════════════════════
+const HEB_DAYS = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+const GREG_MONTHS_HE = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+
+// ══════════════════════════════════════════════
+// NEXT PRAYER
+// ══════════════════════════════════════════════
+// All loaded prayer rows stored here for lookup
+// Raw rows stored separately for day-aware lookup
+let rawWeekdayRows = [];
+let rawShabbatRows = [];
+let rawHagFridayRows   = []; // חג rows tagged as day 1 (Friday, col E blank/'1')
+let rawHagSaturdayRows = []; // חג rows tagged as day 2 (Saturday, col E anything else)
+
+// Footer center: next-prayer text (kept separate from DOM so we can alternate with ראש חודש)
+let nextPrayerLine1 = '—';
+let nextPrayerLine2 = '';
+let lastNextPrayerMinuteKey = '';
+
+// ראש חודש state
+let roshChodeshInfo   = null; // { title, hebrew, dates: ['YYYY-MM-DD', ...] }
+let footerMode        = 'prayer'; // 'prayer' | 'roshchodesh'
+let footerAlternateTimer = null;
+let todayHavdalahMin  = null; // minutes since midnight, used to cap "Saturday daytime" window
+let todaySunsetMin    = null; // minutes since midnight — שקיעה, drives the ראש חודש day-before window
+
+// ספירת העומר state
+let omerDayToday      = null; // omer day number (1-49) whose Hebrew day is today's daytime, or null
+let omerDayTomorrow    = null; // omer day number whose Hebrew day begins at today's שקיעה, or null
+
+function storePrayerRowsForNext(weekdayRows, shabbatRows) {
+  rawWeekdayRows = weekdayRows || [];
+  rawShabbatRows = shabbatRows || [];
+  updateNextPrayer();
+}
+
+function updateNextPrayer() {
+  if (!document.getElementById('next-prayer-name')) return;
+
+  const now    = new Date();
+  const nowMin = now.getHours() * 60 + now.getMinutes();
+  const day    = now.getDay(); // 0=Sun, 5=Fri, 6=Sat
+
+  const toMin = t => {
+    if (!t) return 9999;
+    const parts = t.split(':');
+    return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+  };
+
+  const isVisible = r => r[0] && (r[3] === undefined || r[3] === '' || r[3] === '1');
+
+  let candidates = [];
+
+  // חג override: if today is an enabled חג day, use ONLY that day's חג rows —
+  // never mixed with the other חג day, and never mixed with regular weekday/שבת logic.
+  const hagToday =
+    (showHag && showHagDay1 && day === 5) ? rawHagFridayRows :
+    (showHag && showHagDay2 && day === 6) ? rawHagSaturdayRows :
+    null;
+
+  if (hagToday) {
+    candidates = hagToday
+      .filter(isVisible)
+      .map(r => ({ name: r[0], time: r[1], note: r[2], min: toMin(r[1]) }));
+  } else if (day === 6) {
+    // Saturday — only שבת prayers (exclude rows tagged as Friday)
+    const isFridayRow = r => r[4] === undefined || r[4] === '' || r[4] === '1';
+    candidates = rawShabbatRows
+      .filter(r => isVisible(r) && !isFridayRow(r))
+      .map(r => ({ name: r[0], time: r[1], note: r[2], min: toMin(r[1]) }));
+
+  } else if (day === 5) {
+    // Friday:
+    // - Before the earliest מנחה (שישי): show חול prayers that are before מנחה שישי time
+    // - From מנחה שישי time onwards: show שישי שבת prayers only
+
+    const fridayShabbat = rawShabbatRows
+      .filter(r => isVisible(r) && (r[4] === undefined || r[4] === '' || r[4] === '1'))
+      .map(r => ({ name: r[0], time: r[1], note: r[2], min: toMin(r[1]) }));
+
+    // Find the earliest מנחה in the Friday/שבת list
+    const fridayMincha = fridayShabbat
+      .filter(r => r.name && r.name.includes('מנחה'))
+      .sort((a, b) => a.min - b.min)[0];
+
+    const minchaMin = fridayMincha ? fridayMincha.min : 9999;
+
+    if (nowMin < minchaMin) {
+      // Before מנחה time — show חול prayers that are before מנחה
+      const weekdayBeforeMincha = rawWeekdayRows
+        .filter(isVisible)
+        .map(r => ({ name: r[0], time: r[1], note: r[2], min: toMin(r[1]) }))
+        .filter(r => r.min < minchaMin);
+      candidates = [...weekdayBeforeMincha, ...fridayShabbat.filter(r => r.min >= minchaMin)];
+    } else {
+      // From מנחה onwards — show only שישי שבת prayers
+      candidates = fridayShabbat;
+    }
+
+  } else {
+    // Sun–Thu — only חול prayers
+    candidates = rawWeekdayRows
+      .filter(isVisible)
+      .map(r => ({ name: r[0], time: r[1], note: r[2], min: toMin(r[1]) }));
+  }
+
+  const upcoming = candidates
+    .filter(r => r.min > nowMin)
+    .sort((a, b) => a.min - b.min);
+
+  if (!upcoming.length) {
+    nextPrayerLine1 = '—';
+    nextPrayerLine2 = 'אין תפילות נוספות היום';
+    renderFooterCenter();
+    return;
+  }
+
+  const next    = upcoming[0];
+  const diffMin = next.min - nowMin;
+  const hrs     = Math.floor(diffMin / 60);
+  const mins    = diffMin % 60;
+
+  let timeText;
+  if (diffMin < 60) {
+    timeText = `בעוד ${diffMin} דקות`;
+  } else if (mins === 0) {
+    timeText = `בעוד ${hrs} שעות`;
+  } else {
+    timeText = `בעוד ${hrs} שעות ו-${mins} דקות`;
+  }
+
+  const normalizedName = (next.name || '')
+    .replace(/[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g, '') // strip bidi/direction marks
+    .trim();
+  const normalizedNote = (next.note || '')
+    .replace(/[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g, '')
+    .trim();
+  const isSpecialLabel = normalizedName.includes('נרות')
+    || normalizedName.includes('מוקדמת')
+    || normalizedNote.includes('מוקדמת');
+
+  const displayName = (normalizedNote.includes('מוקדמת') && !normalizedName.includes('מוקדמת'))
+    ? `${normalizedName} מוקדמת`
+    : normalizedName;
+
+  nextPrayerLine1 = isSpecialLabel
+    ? displayName
+    : `התפילה הבאה — ${displayName}`;
+  nextPrayerLine2 = `${next.time} | ${timeText}`;
+  renderFooterCenter();
+}
+
+// ══════════════════════════════════════════════
+// ראש חודש
+// ══════════════════════════════════════════════
+function fmtDate(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+async function loadRoshChodesh() {
+  try {
+    const today = new Date();
+    const endD  = new Date(today);
+    endD.setDate(endD.getDate() + 40); // enough to always catch the next ר"ח
+    const url = `https://www.hebcal.com/hebcal?v=1&cfg=json&maj=off&min=off&mod=off&nx=on&mf=off&ss=off&s=off&c=off&geo=none&lg=he&start=${fmtDate(today)}&end=${fmtDate(endD)}`;
+    const r = await fetch(url);
+    const data = await r.json();
+    const items = (data.items || []).filter(i => i.category === 'roshchodesh');
+    if (!items.length) { roshChodeshInfo = null; return; }
+
+    // Group consecutive-day events sharing the same title (covers 2-day ר"ח)
+    const groups = {};
+    items.forEach(it => {
+      const dateStr = String(it.date).slice(0, 10);
+      if (!groups[it.title]) groups[it.title] = { title: it.title, hebrew: it.hebrew, dates: [] };
+      groups[it.title].dates.push(dateStr);
+    });
+    Object.values(groups).forEach(g => g.dates.sort());
+
+    const todayStr  = fmtDate(today);
+    const groupList = Object.values(groups).sort((a, b) => a.dates[0].localeCompare(b.dates[0]));
+    // Nearest group that hasn't fully passed yet
+    roshChodeshInfo = groupList.find(g => g.dates[g.dates.length - 1] >= todayStr) || null;
+  } catch (e) {
+    roshChodeshInfo = null;
+  }
+}
+
+function rcMonthName(info) {
+  const heb = (info.hebrew || '').replace(/^ראש חודש\s*/, '').replace(/^ר"ח\s*/, '').trim();
+  if (heb) return heb;
+  return (info.title || '').replace(/^Rosh Chodesh\s*/i, '').trim();
+}
+
+function rcDayPhrase(dow) {
+  return dow === 6 ? 'בשבת קודש' : `ביום ${HEB_DAYS[dow]}`;
+}
+
+function rcTwoDayText(monthHeb, dow1, dow2) {
+  const isShabbat1 = dow1 === 6, isShabbat2 = dow2 === 6;
+  const phrase1 = rcDayPhrase(dow1);
+  let phrase2;
+  if (!isShabbat1 && !isShabbat2) {
+    phrase2 = `ויום ${HEB_DAYS[dow2]}`; // both weekdays — drop the ב on the second
+  } else {
+    phrase2 = isShabbat2 ? 'ובשבת קודש' : `וביום ${HEB_DAYS[dow2]}`;
+  }
+  return `ראש חודש ${monthHeb} ${phrase1} ${phrase2}`;
+}
+
+// Returns { mode: 'today' | 'day-before', text } or null if nothing to show right now.
+// Window: starts at שקיעה on the day BEFORE the first ר"ח day, runs continuously
+// (day names in Hebrew reckoning start at nightfall) through the ר"ח day(s),
+// and ends at שקיעה on the LAST ר"ח day. Applies on any day of the week.
+function computeRoshChodeshMessage() {
+  if (!roshChodeshInfo) return null;
+
+  const now      = new Date();
+  const todayStr = fmtDate(now);
+  const nowMin   = now.getHours() * 60 + now.getMinutes();
+  const dates    = roshChodeshInfo.dates;
+  const monthHeb = rcMonthName(roshChodeshInfo);
+  if (!monthHeb) return null;
+
+  const firstDate = new Date(dates[0] + 'T00:00:00');
+  const lastDate  = new Date(dates[dates.length - 1] + 'T00:00:00');
+  const todayDate = new Date(todayStr + 'T00:00:00');
+
+  const diffToFirst = Math.round((firstDate - todayDate) / 86400000);
+  const diffToLast  = Math.round((lastDate  - todayDate) / 86400000);
+
+  // 1) Today is the day immediately before ר"ח — only active from שקיעה onward
+  if (diffToFirst === 1) {
+    if (todaySunsetMin === null || nowMin < todaySunsetMin) return null;
+
+    if (dates.length === 1) {
+      const dow = firstDate.getDay();
+      return { mode: 'day-before', text: `ראש חודש ${monthHeb} ${rcDayPhrase(dow)}` };
+    } else {
+      const dow1 = firstDate.getDay();
+      const dow2 = new Date(dates[1] + 'T00:00:00').getDay();
+      return { mode: 'day-before', text: rcTwoDayText(monthHeb, dow1, dow2) };
+    }
+  }
+
+  // 2) Today is (one of) the ר"ח day(s) itself
+  if (diffToFirst <= 0 && diffToLast >= 0) {
+    // On the LAST ר"ח day, the message ends at that day's own שקיעה
+    // (Hebrew day rolls over to the next, non-ר"ח, day at nightfall).
+    if (diffToLast === 0 && todaySunsetMin !== null && nowMin >= todaySunsetMin) return null;
+    return { mode: 'today', text: `ראש חודש ${monthHeb}` };
+  }
+
+  return null;
+}
+
+// ══════════════════════════════════════════════
+// FOOTER CENTER — alternates התפילה הבאה ↔ ראש חודש ↔ ספירת העומר
+// ══════════════════════════════════════════════
+async function loadOmer() {
+  try {
+    const today = new Date();
+    const endD  = new Date(today);
+    endD.setDate(endD.getDate() + 1); // need today AND tomorrow's Hebrew day
+    const url = `https://www.hebcal.com/hebcal?v=1&cfg=json&maj=off&min=off&mod=off&nx=off&mf=off&ss=off&s=off&c=off&geo=none&omer=on&start=${fmtDate(today)}&end=${fmtDate(endD)}`;
+    const r = await fetch(url);
+    const data = await r.json();
+    const items = (data.items || []).filter(i => i.category === 'omer');
+
+    const todayStr    = fmtDate(today);
+    const tomorrowStr = fmtDate(endD);
+
+    omerDayToday    = null;
+    omerDayTomorrow = null;
+
+    items.forEach(it => {
+      const m = String(it.title_orig || '').match(/Omer (\d+)/);
+      if (!m) return;
+      const n = parseInt(m[1], 10);
+      const dateStr = String(it.date).slice(0, 10);
+      if (dateStr === todayStr) omerDayToday = n;
+      if (dateStr === tomorrowStr) omerDayTomorrow = n;
+    });
+  } catch (e) {
+    omerDayToday = null;
+    omerDayTomorrow = null;
+  }
+}
+
+function heWeeksDays(weeks, days) {
+  const weeksText = weeks === 1 ? 'שבוע אחד' : `${weeks} שבועות`;
+  if (days === 0) return weeksText;
+  const daysText = days === 1 ? 'יום אחד' : `${days} ימים`;
+  return `${weeksText} ו${daysText}`;
+}
+
+// Returns { text } or null if not currently in the ספירת העומר period
+function computeOmerMessage() {
+  const now    = new Date();
+  const nowMin = now.getHours() * 60 + now.getMinutes();
+
+  const dayNum = (todaySunsetMin !== null && nowMin >= todaySunsetMin)
+    ? omerDayTomorrow
+    : omerDayToday;
+
+  if (!dayNum) return null;
+
+  if (dayNum < 7) {
+    return { text: `היום ${dayNum} ימים לעומר` };
+  }
+  const weeks = Math.floor(dayNum / 7);
+  const days  = dayNum % 7;
+  return { text: `היום ${dayNum} ימים, שהם ${heWeeksDays(weeks, days)} לעומר` };
+}
+
+function renderFooterCenter() {
+  const nameEl = document.getElementById('next-prayer-name');
+  const timeEl = document.getElementById('next-prayer-time');
+  if (!nameEl) return;
+
+  if (footerMode === 'roshchodesh') {
+    const rc = computeRoshChodeshMessage();
+    if (rc) { nameEl.textContent = rc.text; timeEl.textContent = ''; return; }
+  } else if (footerMode === 'omer') {
+    const om = computeOmerMessage();
+    if (om) { nameEl.textContent = om.text; timeEl.textContent = ''; return; }
+  }
+
+  nameEl.textContent = nextPrayerLine1;
+  timeEl.textContent = nextPrayerLine2;
+}
+
+function tickFooterAlternate() {
+  const box = document.getElementById('next-prayer-box');
+  if (!box) return;
+
+  // Build the list of modes that currently have content to show, always
+  // including 'prayer' as the anchor/fallback.
+  const modes = ['prayer'];
+  if (computeRoshChodeshMessage()) modes.push('roshchodesh');
+  if (computeOmerMessage())        modes.push('omer');
+
+  if (modes.length === 1) {
+    if (footerMode !== 'prayer') footerMode = 'prayer';
+    renderFooterCenter();
+    return;
+  }
+
+  box.style.transition = 'opacity 0.5s';
+  box.style.opacity = '0';
+  setTimeout(() => {
+    const curIdx = modes.indexOf(footerMode);
+    const nextIdx = (curIdx === -1) ? 0 : (curIdx + 1) % modes.length;
+    footerMode = modes[nextIdx];
+    renderFooterCenter();
+    box.style.opacity = '1';
+  }, 500);
+}
+
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  const s = String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('live-clock').textContent = `${h}:${m}:${s}`;
+
+  document.getElementById('footer-day').textContent =
+    `יום ${HEB_DAYS[now.getDay()]}`;
+
+  // Update next prayer whenever the minute changes (robust to timer drift —
+  // don't rely on hitting the exact second '00', which can be skipped)
+  const currentMinuteKey = `${h}:${m}`;
+  if (currentMinuteKey !== lastNextPrayerMinuteKey) {
+    lastNextPrayerMinuteKey = currentMinuteKey;
+    updateNextPrayer();
+  }
+
+  // Midnight refresh
+  if (h === '00' && m === '01' && s === '00') {
+    location.reload();
+  }
+}
+
+function updateGregorianDate() {
+  const now = new Date();
+  const day  = now.getDate();
+  const mon  = GREG_MONTHS_HE[now.getMonth()];
+  const year = now.getFullYear();
+  document.getElementById('greg-date').textContent = `${day} ${mon} ${year}`;
+}
+
+// Hebrew date via Hebcal API
+async function loadHebrewDate() {
+  try {
+    const now = new Date();
+    const url = `https://www.hebcal.com/converter?cfg=json&gy=${now.getFullYear()}&gm=${now.getMonth()+1}&gd=${now.getDate()}&g2h=1`;
+    const r = await fetch(url);
+    const d = await r.json();
+    document.getElementById('heb-date').textContent = d.hebrew || '';
+    return d;
+  } catch(e) {
+    document.getElementById('heb-date').textContent = 'שגיאת תאריך';
+  }
+}
+
+// ══════════════════════════════════════════════
+// MYZMANIM — זמני היום
+// ══════════════════════════════════════════════
+const ZMANIM_MAP = [
+  { key: 'alot',         label: 'עלות השחר',        highlight: false },
+  { key: 'misheyakir',   label: 'משיכיר',            highlight: false },
+  { key: 'sunrise',      label: 'הנץ החמה',          highlight: true  },
+  { key: 'sofZmanShmaGRA', label: 'סוף זמן ק"ש (גר"א)', highlight: false },
+  { key: 'sofZmanTfila', label: 'סוף זמן תפילה',     highlight: false },
+  { key: 'chatzot',      label: 'חצות היום',         highlight: true  },
+  { key: 'minchaGedola', label: 'מנחה גדולה',        highlight: false },
+  { key: 'minchaKetana', label: 'מנחה קטנה',         highlight: false },
+  { key: 'plagHaMincha', label: 'פלג המנחה',         highlight: false },
+  { key: 'sunset',       label: 'שקיעת החמה',        highlight: true  },
+  { key: 'tzait',        label: 'צאת הכוכבים',       highlight: false },
+  { key: 'tzait72',      label: 'צאת ר"ת (72 דק\')', highlight: false },
+];
+
+async function loadZmanim() {
+  const body = document.getElementById('zmanim-body');
+  try {
+    const now  = new Date();
+    const date = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+    // Using myzmanim.com API
+    const url = `https://www.myzmanim.com/read/services.aspx?lat=${siteLat}&lng=${siteLng}&date=${date}&tzid=${CONFIG.MYZMANIM_TZ_ID}`;
+    const r = await fetch(url);
+    const data = await r.json();
+
+    if (!data || data.error) throw new Error('No data');
+
+    const nowMins = now.getHours() * 60 + now.getMinutes();
+    let nextIdx = -1;
+
+    const rows = ZMANIM_MAP.map((z, i) => {
+      const val = data[z.key];
+      if (!val) return null;
+      const timeStr = formatTime(val);
+      const [zh, zm] = val.split(':').map(Number);
+      const zMins = zh * 60 + zm;
+      return { ...z, timeStr, zMins, i };
+    }).filter(Boolean);
+
+    // Find next zman
+    for (let i = 0; i < rows.length; i++) {
+      if (rows[i].zMins > nowMins) { nextIdx = i; break; }
+    }
+
+    body.innerHTML = rows.map((z, i) => `
+      <div class="zman-row ${z.highlight ? 'highlight' : ''} ${i === nextIdx ? 'next-zman' : ''}">
+        <span class="zman-name">${z.label}${i === nextIdx ? ' ◀' : ''}</span>
+        <span class="zman-time">${z.timeStr}</span>
+      </div>
+    `).join('');
+
+    // Update shabbat in footer
+    if (data.candleLighting) {
+      document.getElementById('shabbat-times-footer').innerHTML =
+        `<div>הדלקת נרות: ${formatTime(data.candleLighting)}</div>
+         <div>יציאת שבת: ${data.havdalah ? formatTime(data.havdalah) : '—'}</div>`;
+    }
+    if (data.havdalah) {
+      const [hvH, hvM] = String(data.havdalah).split(':').map(Number);
+      if (!isNaN(hvH) && !isNaN(hvM)) todayHavdalahMin = hvH * 60 + hvM;
+    }
+    if (data.sunset) {
+      const [ssH, ssM] = String(data.sunset).split(':').map(Number);
+      if (!isNaN(ssH) && !isNaN(ssM)) todaySunsetMin = ssH * 60 + ssM;
+    }
+
+    document.getElementById('last-update').textContent = `עדכון אחרון: ${formatTime(now.toTimeString().slice(0,5))}`;
+  } catch(e) {
+    body.innerHTML = `<div class="error-text">⚠️ לא ניתן לטעון זמנים<br><small>${e.message}</small></div>`;
+    loadZmanimFallback();
+  }
+}
+
+// Fallback: use Hebcal for basic times
+async function loadZmanimFallback() {
+  const body = document.getElementById('zmanim-body');
+  try {
+    const now = new Date();
+    const url = `https://www.hebcal.com/zmanim?cfg=json&latitude=${siteLat}&longitude=${siteLng}&tzid=Asia/Jerusalem&date=${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+    const r = await fetch(url);
+    const data = await r.json();
+    if (!data.times) throw new Error();
+
+    const t = data.times;
+    const zmanimFallback = [
+      { label: 'עלות השחר',           val: t.alotHaShachar },
+      { label: 'הנץ החמה',            val: t.sunrise },
+      { label: 'סוף ק"ש (גר"א)',      val: t.sofZmanShma },
+      { label: 'סוף תפילה (גר"א)',    val: t.sofZmanTfilla },
+      { label: 'חצות היום',           val: t.chatzot },
+      { label: 'מנחה גדולה',          val: t.minchaGedola },
+      { label: 'פלג המנחה',           val: t.plagHaMincha },
+      { label: 'שקיעת החמה',          val: t.sunset },
+      { label: 'צאת הכוכבים',         val: t.tzeit7083deg },
+    ];
+
+    const nowMins = now.getHours() * 60 + now.getMinutes();
+    let nextIdx = -1;
+
+    const rows = zmanimFallback.filter(z => z.val).map((z, i) => {
+      const d = new Date(z.val);
+      const h = d.getHours(), m = d.getMinutes();
+      const zMins = h * 60 + m;
+      const timeStr = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+      return { ...z, timeStr, zMins };
+    });
+
+    for (let i = 0; i < rows.length; i++) {
+      if (rows[i].zMins > nowMins) { nextIdx = i; break; }
+    }
+
+    body.innerHTML = rows.map((z, i) => `
+      <div class="zman-row ${i === nextIdx ? 'next-zman' : ''}">
+        <span class="zman-name">${z.label}${i === nextIdx ? ' ◀' : ''}</span>
+        <span class="zman-time">${z.timeStr}</span>
+      </div>
+    `).join('');
+
+    // Shabbat
+    if (data.times.candles) {
+      const cd = new Date(data.times.candles);
+      const hd = data.times.havdalah ? new Date(data.times.havdalah) : null;
+      document.getElementById('shabbat-times-footer').innerHTML =
+        `<div>הדלקת נרות: ${String(cd.getHours()).padStart(2,'0')}:${String(cd.getMinutes()).padStart(2,'0')}</div>
+         ${hd ? `<div>יציאת שבת: ${String(hd.getHours()).padStart(2,'0')}:${String(hd.getMinutes()).padStart(2,'0')}</div>` : ''}`;
+      if (hd) todayHavdalahMin = hd.getHours() * 60 + hd.getMinutes();
+    }
+    if (t.sunset) {
+      const sd = new Date(t.sunset);
+      todaySunsetMin = sd.getHours() * 60 + sd.getMinutes();
+    }
+
+    // Parasha
+    if (data.title) {
+      if (data.title) { /* parasha shown in header */ }
+    }
+
+    document.getElementById('last-update').textContent = `עדכון אחרון: ${new Date().getHours().toString().padStart(2,'0')}:${new Date().getMinutes().toString().padStart(2,'0')}`;
+  } catch(e) {
+    body.innerHTML += `<div class="error-text">לא ניתן לטעון זמנים</div>`;
+  }
+}
+
+function formatTime(val) {
+  if (!val) return '—';
+  if (typeof val === 'string' && val.includes(':')) {
+    const parts = val.split(':');
+    return `${parts[0].padStart(2,'0')}:${parts[1].padStart(2,'0')}`;
+  }
+  return val;
+}
+
+// ══════════════════════════════════════════════
+// GOOGLE SHEETS — זמני תפילה (חול + שבת)
+// ══════════════════════════════════════════════
+let prayerHTMLWeekday = '';
+let prayerHTMLShabbat = '';
+let prayerHTMLHag     = '';
+let showChol    = true;
+let showShabbat = true;
+let showHag     = false;
+let showHagDay1 = true;  // חג יום ראשון (שישי) — checked by default
+let showHagDay2 = false; // חג יום שני (שבת) — unchecked by default
+let prayerViewMode = 'weekday';
+
+// Synagogue name — configurable via Settings sheet column D, falls back to this default
+const DEFAULT_SYNAGOGUE_NAME = 'בית הכנסת המרכזי';
+
+// Location — configurable via Settings sheet columns E (lat) / F (lng), falls back to CONFIG defaults
+let siteLat = CONFIG.MYZMANIM_LAT;
+let siteLng = CONFIG.MYZMANIM_LNG;
+
+function applySynagogueName(name) {
+  const titleEl = document.getElementById('header-title');
+  if (titleEl) {
+    // Split on the last space so mobile can still break onto two lines
+    const words = name.trim().split(/\s+/);
+    if (words.length > 1) {
+      const last = words.pop();
+      titleEl.innerHTML = `${words.join(' ')}<span class="title-break"> </span>${last}`;
+    } else {
+      titleEl.textContent = name;
+    }
+  }
+  document.title = name;
+}
+
+function buildShabbatPrayerHTML(rows) {
+  if (!rows || !rows.length) return '<div class="loading-text">אין זמני תפילה</div>';
+
+  // Filter out hidden rows (col H = visible flag)
+  const visibleRows = rows.filter(row => {
+    const [name, , , visible] = row;
+    if (!name) return false;
+    return visible === undefined || visible === '' || visible === '1';
+  });
+
+  if (!visibleRows.length) return '<div class="loading-text">אין זמני תפילה</div>';
+
+  const toMinutes = t => {
+    if (!t) return 9999;
+    const [h, m] = t.split(':').map(Number);
+    return (h || 0) * 60 + (m || 0);
+  };
+
+  // Friday (col I = '1' or blank) sorted by time first, then Saturday
+  const sorted = [...visibleRows].sort((a, b) => {
+    const isFridayA = a[4] === undefined || a[4] === '' || a[4] === '1';
+    const isFridayB = b[4] === undefined || b[4] === '' || b[4] === '1';
+    if (isFridayA !== isFridayB) return isFridayA ? -1 : 1;
+    return toMinutes(a[1]) - toMinutes(b[1]);
+  });
+
+  const hasFriday   = sorted.some(r => r[4] === undefined || r[4] === '' || r[4] === '1');
+  const hasSaturday = sorted.some(r => !(r[4] === undefined || r[4] === '' || r[4] === '1'));
+
+  let html = '';
+  let fridayHeaderShown   = false;
+  let saturdayHeaderShown = false;
+  sorted.forEach(row => {
+    const [name, time, note] = row;
+    if (!name && !time) return;
+    const isFriday = row[4] === undefined || row[4] === '' || row[4] === '1';
+    if (isFriday && hasFriday && !fridayHeaderShown) {
+      html += `<div class="prayer-section-title">תפילות שישי</div>`;
+      fridayHeaderShown = true;
+    } else if (!isFriday && hasSaturday && !saturdayHeaderShown) {
+      html += `<div class="prayer-section-title prayer-section-title--shabbat">תפילות שבת</div>`;
+      saturdayHeaderShown = true;
+    }
+    html += `
+      <div class="prayer-row">
+        <span class="prayer-name-wrap">
+          <span class="prayer-name">${name || ''}</span>
+          ${note ? `<span class="prayer-category">${note}</span>` : ''}
+        </span>
+        <span class="prayer-time">${time || ''}</span>
+      </div>`;
+  });
+  return `<div class="prayer-section">${html}</div>`;
+}
+
+function buildPrayerHTML(rows) {
+  if (!rows || !rows.length) return '<div class="loading-text">אין זמני תפילה</div>';
+
+  // Filter out hidden rows (col D/H = visible flag, blank or '1' = show)
+  const visibleRows = rows.filter(row => {
+    const [name, , , visible] = row;
+    if (!name) return false;
+    return visible === undefined || visible === '' || visible === '1';
+  });
+
+  if (!visibleRows.length) return '<div class="loading-text">אין זמני תפילה</div>';
+
+  // Sort by time (HH:MM)
+  const sorted = [...visibleRows].sort((a, b) => {
+    const toMinutes = t => {
+      if (!t) return 9999;
+      const [h, m] = t.split(':').map(Number);
+      return (h || 0) * 60 + (m || 0);
+    };
+    return toMinutes(a[1]) - toMinutes(b[1]);
+  });
+
+  let html = '';
+  sorted.forEach(row => {
+    const [name, time, note] = row;
+    if (!name && !time) return;
+    html += `
+      <div class="prayer-row">
+        <span class="prayer-name-wrap">
+          <span class="prayer-name">${name || ''}</span>
+          ${note ? `<span class="prayer-category">${note}</span>` : ''}
+        </span>
+        <span class="prayer-time">${time || ''}</span>
+      </div>`;
+  });
+  return `<div class="prayer-section">${html}</div>`;
+}
+
+// ── Left panel cycling (זמני היום ↔ שיעורים) ─────────────────────────────
+let leftPanelMode = 'zmanim'; // 'zmanim' | 'shiurim'
+let shiurimHTMLWeekday = '';
+let shiurimHTMLShabbat = '';
+
+function buildShiurimHTML(rows, isWeekday) {
+  const visible = (rows || []).filter(row => {
+    const [name, , , , vis, weekdayFlag] = row;
+    if (!name) return false;
+    const isRowWeekday = weekdayFlag === undefined || weekdayFlag === '' || weekdayFlag === '1';
+    if (isRowWeekday !== isWeekday) return false;
+    return vis === undefined || vis === '' || vis === '1';
+  });
+
+  if (!visible.length) return '<div class="loading-text">אין שיעורים</div>';
+
+  const toMin = t => { try { const [h,m] = t.split(':').map(Number); return h*60+m; } catch(e) { return 9999; }};
+  const sorted = [...visible].sort((a,b) => toMin(a[1]) - toMin(b[1]));
+
+  let html = '';
+  sorted.forEach(row => {
+    const [name, time, lecturer, note] = row;
+    html += `
+      <div class="prayer-row">
+        <span class="prayer-name-wrap">
+          <span class="prayer-name">${name || ''}</span>
+          ${lecturer ? `<span class="prayer-category">${lecturer}</span>` : ''}
+          ${note ? `<span class="prayer-category">${note}</span>` : ''}
+        </span>
+        <span class="prayer-time">${time || ''}</span>
+      </div>`;
+  });
+  return `<div class="prayer-section">${html}</div>`;
+}
+
+let leftPanelTimer = null;
+
+function scheduleLeftPanel(delayMs) {
+  if (leftPanelTimer) clearTimeout(leftPanelTimer);
+  leftPanelTimer = setTimeout(switchLeftPanel, delayMs);
+}
+
+function switchLeftPanel() {
+  const zmanimBody  = document.getElementById('zmanim-body');
+  const shiurimBody = document.getElementById('shiurim-body');
+  const title       = document.getElementById('left-panel-title');
+  const icon        = document.getElementById('left-panel-icon');
+
+  zmanimBody.style.transition  = 'opacity 0.5s';
+  shiurimBody.style.transition = 'opacity 0.5s';
+  title.style.transition       = 'opacity 0.5s';
+
+  const currentOpacity = leftPanelMode === 'zmanim' ? zmanimBody : shiurimBody;
+  currentOpacity.style.opacity = '0';
+  title.style.opacity = '0';
+
+  setTimeout(() => {
+    if (leftPanelMode === 'zmanim') {
+      leftPanelMode = 'shiurim';
+      const isShabbat = prayerViewMode === 'shabbat';
+      shiurimBody.innerHTML = isShabbat ? shiurimHTMLShabbat : shiurimHTMLWeekday;
+      zmanimBody.style.display  = 'none';
+      shiurimBody.style.display = '';
+      shiurimBody.style.opacity = '1';
+      title.textContent = isShabbat ? 'שיעורי שבת' : 'שיעורי חול';
+      icon.textContent  = '📖';
+      scheduleLeftPanel(10000); // שיעורים shows for 10s
+    } else {
+      leftPanelMode = 'zmanim';
+      zmanimBody.style.display  = '';
+      shiurimBody.style.display = 'none';
+      zmanimBody.style.opacity  = '1';
+      title.textContent = 'זמני היום';
+      icon.textContent  = '🌅';
+      scheduleLeftPanel(20000); // זמני היום shows for 20s
+    }
+    title.style.opacity = '1';
+  }, 500);
+}
+
+async function loadShiurim() {
+  try {
+    const token = await getAccessToken();
+    const r = await fetch(
+      `https://sheets.googleapis.com/v4/spreadsheets/${ACTIVE_SHEET_ID}/values/${encodeURIComponent(CONFIG.SHIURIM_RANGE)}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    const data = await r.json();
+    const rows = data.values || [];
+    shiurimHTMLWeekday = buildShiurimHTML(rows, true);
+    shiurimHTMLShabbat = buildShiurimHTML(rows, false);
+  } catch(e) {
+    shiurimHTMLWeekday = '<div class="loading-text">אין שיעורים</div>';
+    shiurimHTMLShabbat = '<div class="loading-text">אין שיעורים</div>';
+  }
+}
+
+function setPrayerScrollDuration(contentHeight) {
+  const body    = document.getElementById('prayer-body');
+  const wrapper = document.getElementById('prayer-wrapper');
+  const wrapperHeight = wrapper ? wrapper.clientHeight : 0;
+
+  // Reset
+  body.style.animation = 'none';
+  body.style.transform = 'translateY(0)';
+  body.style.position  = 'relative';
+  void body.offsetWidth;
+
+  if (contentHeight <= wrapperHeight) {
+    // Fits — no scroll needed. Drop the 40px top/bottom padding (normally reserved
+    // for the scroll fade gradient) and hide the fade overlays themselves, so the
+    // list — and the תפילות שישי / תפילות שבת titles — start flush at the true top.
+    body.style.padding = '0';
+    if (wrapper) wrapper.classList.add('no-scroll');
+    return 12000; // show for at least 12 seconds then switch
+  }
+
+  // Scrolling — restore the padding and fade overlays
+  body.style.padding = '40px 0';
+  if (wrapper) wrapper.classList.remove('no-scroll');
+  const scrollPx   = contentHeight - wrapperHeight + 40;
+  const holdSecs   = 4;
+  const scrollSecs = scrollPx / 18;
+  let   totalSecs  = holdSecs + scrollSecs;
+  if (totalSecs < 12) totalSecs = 12; // ensure the panel is shown for at least 12 seconds
+  const holdPct    = Math.round((holdSecs / totalSecs) * 100);
+
+  const styleId = 'prayer-scroll-style';
+  let styleEl = document.getElementById(styleId);
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = styleId;
+    document.head.appendChild(styleEl);
+  }
+  styleEl.textContent = `
+    @keyframes prayer-scroll-dynamic {
+      0%        { transform: translateY(0); }
+      ${holdPct}% { transform: translateY(0); }
+      100%      { transform: translateY(-${scrollPx}px); }
+    }
+  `;
+
+  body.style.position  = 'absolute';
+  body.style.animation = `prayer-scroll-dynamic ${totalSecs}s linear 1 forwards`;
+
+  // Return total ms to wait before switching (scroll + 2s pause)
+  return (totalSecs + 2) * 1000;
+}
+
+let prayerSwitchTimer = null;
+
+function schedulePrayerSwitch(delayMs) {
+  if (prayerSwitchTimer) clearTimeout(prayerSwitchTimer);
+  prayerSwitchTimer = setTimeout(switchPrayerView, delayMs);
+}
+
+function switchPrayerView() {
+  const body  = document.getElementById('prayer-body');
+  const title = document.getElementById('prayer-panel-title');
+
+  body.style.transition  = 'opacity 0.5s';
+  title.style.transition = 'opacity 0.5s';
+  body.style.opacity  = '0';
+  title.style.opacity = '0';
+
+  setTimeout(() => {
+    // Build ordered list of enabled panels
+    const panels = [];
+    if (showChol)    panels.push({ mode: 'weekday', html: prayerHTMLWeekday, title: 'זמני תפילה חול' });
+    if (showShabbat) panels.push({ mode: 'shabbat', html: prayerHTMLShabbat, title: 'זמני תפילה שבת' });
+    if (showHag)     panels.push({ mode: 'hag',     html: prayerHTMLHag,     title: 'זמני תפילת חג' });
+
+    // Fallback: always show חול
+    if (panels.length === 0) panels.push({ mode: 'weekday', html: prayerHTMLWeekday, title: 'זמני תפילה חול' });
+
+    // Find next panel in cycle
+    const currentIdx = panels.findIndex(p => p.mode === prayerViewMode);
+    const nextIdx    = (currentIdx + 1) % panels.length;
+    const next       = panels[nextIdx];
+
+    prayerViewMode    = next.mode;
+    body.innerHTML    = next.html;
+    title.textContent = next.title;
+    body.style.opacity  = '1';
+    title.style.opacity = '1';
+    const delay = setPrayerScrollDuration(body.scrollHeight);
+    schedulePrayerSwitch(delay);
+  }, 500);
+}
+
+// Reads Settings!A2:F2 — display toggles, synagogue name, and location (lat/lng).
+// Runs BEFORE the main Promise.all in init() so that loadZmanim / loadZmanimFallback /
+// loadParasha already have the correct siteLat/siteLng on first load, instead of racing
+// against this fetch and possibly using the CONFIG defaults for one cycle.
+async function loadSettings() {
+  try {
+    const token = await getAccessToken();
+    const r = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${ACTIVE_SHEET_ID}/values/${encodeURIComponent(CONFIG.SETTINGS_RANGE)}`,
+      { headers: { Authorization: `Bearer ${token}` } });
+    const d = await r.json();
+    const settingsRow = d?.values?.[0] || [];
+
+    showChol    = settingsRow[0] === undefined || settingsRow[0] === '' || settingsRow[0] === '1';
+    showShabbat = settingsRow[1] === undefined || settingsRow[1] === '' || settingsRow[1] === '1';
+    showHag     = settingsRow[2] === '1';
+    // חג day toggles (columns I/J) — two-day חג support (e.g. Friday + Saturday).
+    // Day 1: checked by default (only '0' turns it off).
+    // Day 2: unchecked by default (only '1' turns it on).
+    showHagDay1 = settingsRow[8] !== '0';
+    showHagDay2 = settingsRow[9] === '1';
+    // Fallback: always show חול
+    if (!showChol && !showShabbat && !showHag) showChol = true;
+
+    // Synagogue name (column D) — falls back to default if blank
+    const synagogueName = (settingsRow[3] || '').trim() || DEFAULT_SYNAGOGUE_NAME;
+    applySynagogueName(synagogueName);
+
+    // Location (columns E/F) — falls back to CONFIG defaults if blank or not a valid number
+    const latRaw = parseFloat(settingsRow[4]);
+    const lngRaw = parseFloat(settingsRow[5]);
+    siteLat = !isNaN(latRaw) ? latRaw : CONFIG.MYZMANIM_LAT;
+    siteLng = !isNaN(lngRaw) ? lngRaw : CONFIG.MYZMANIM_LNG;
+
+    // Color theme (column H) — falls back to the default navy/gold look if blank or unrecognized
+    const themeName = (settingsRow[7] || '').trim();
+    applyTheme(themeName);
+  } catch (e) {
+    // Keep whatever defaults are already set (CONFIG values) on failure
+  }
+}
+
+// Whitelisted theme names — must match the body.theme-* classes defined in <style>.
+// Keep this list in sync with the ☰ menu options in the Android app.
+const VALID_THEMES = [
+  'emerald', 'burgundy', 'charcoal', 'royal',
+  'sapphire', 'teal-rose', 'slate', 'wine', 'ivory'
+];
+
+function applyTheme(themeName) {
+  VALID_THEMES.forEach(t => document.body.classList.remove(`theme-${t}`));
+  if (VALID_THEMES.includes(themeName)) {
+    document.body.classList.add(`theme-${themeName}`);
+  }
+  // Anything not in the list (including blank) falls back to the default navy/gold — no class needed
+}
+
+async function loadHag() {
+  try {
+    const token = await getAccessToken();
+    const rRows = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${ACTIVE_SHEET_ID}/values/${encodeURIComponent(CONFIG.HAG_RANGE)}`,
+      { headers: { Authorization: `Bearer ${token}` } });
+    const dRows = await rRows.json();
+
+    const toMin = t => { try { const [h,m] = t.split(':').map(Number); return h*60+m; } catch(e) { return 9999; }};
+
+    // Same visible-flag convention used elsewhere (column D)
+    const rows = (dRows.values || []).filter(r => {
+      const [name,,, visible] = r;
+      if (!name) return false;
+      return visible === undefined || visible === '' || visible === '1';
+    });
+
+    // Same Friday/Saturday split convention as buildShabbatPrayerHTML (column E):
+    // blank/'1' = day 1 (Friday), anything else = day 2 (Saturday)
+    const isFridayRow = r => r[4] === undefined || r[4] === '' || r[4] === '1';
+
+    rawHagFridayRows   = rows.filter(isFridayRow);
+    rawHagSaturdayRows = rows.filter(r => !isFridayRow(r));
+
+    const rowHtml = row => {
+      const [name, time, note] = row;
+      return `
+        <div class="prayer-row">
+          <span class="prayer-time">${time || ''}</span>
+          <span class="prayer-name-wrap">
+            <span class="prayer-name">${name}</span>
+            ${note ? `<span class="prayer-category">${note}</span>` : ''}
+          </span>
+        </div>`;
+    };
+
+    if (!rows.length) {
+      prayerHTMLHag = '<div class="loading-text">אין תפילות חג</div>';
+      return;
+    }
+
+    // Two-day mode only kicks in when day 2 is enabled AND actually has prayers —
+    // otherwise fall back to the flat single-day view exactly as before.
+    if (showHagDay2 && rawHagSaturdayRows.length) {
+      const day1Sorted = [...rawHagFridayRows].sort((a, b) => toMin(a[1]) - toMin(b[1]));
+      const day2Sorted = [...rawHagSaturdayRows].sort((a, b) => toMin(a[1]) - toMin(b[1]));
+
+      let html = '';
+      if (day1Sorted.length) {
+        html += `<div class="prayer-section-title">חג ראשון</div>`;
+        day1Sorted.forEach(row => { html += rowHtml(row); });
+      }
+      if (day2Sorted.length) {
+        html += `<div class="prayer-section-title prayer-section-title--shabbat">חג שני</div>`;
+        day2Sorted.forEach(row => { html += rowHtml(row); });
+      }
+      prayerHTMLHag = html ? `<div class="prayer-section">${html}</div>` : '<div class="loading-text">אין תפילות חג</div>';
+    } else {
+      // Single-day view — flat list, no headers, same as legacy behavior
+      const sorted = [...rows].sort((a, b) => toMin(a[1]) - toMin(b[1]));
+      let html = '';
+      sorted.forEach(row => { html += rowHtml(row); });
+      prayerHTMLHag = html ? `<div class="prayer-section">${html}</div>` : '<div class="loading-text">אין תפילות חג</div>';
+    }
+  } catch(e) {
+    prayerHTMLHag = '<div class="loading-text">אין תפילות חג</div>';
+    rawHagFridayRows = [];
+    rawHagSaturdayRows = [];
+  }
+}
+
+async function loadPrayerTimes() {
+  const body  = document.getElementById('prayer-body');
+  const title = document.getElementById('prayer-panel-title');
+  try {
+    const token = await getAccessToken();
+
+    // Fetch weekday (A-C) and shabbat (E-G) in parallel
+    const [rWeek, rShabbat] = await Promise.all([
+      fetch(`https://sheets.googleapis.com/v4/spreadsheets/${ACTIVE_SHEET_ID}/values/${CONFIG.PRAYER_RANGE}`,         { headers: { Authorization: `Bearer ${token}` } }),
+      fetch(`https://sheets.googleapis.com/v4/spreadsheets/${ACTIVE_SHEET_ID}/values/${CONFIG.PRAYER_RANGE_SHABBAT}`, { headers: { Authorization: `Bearer ${token}` } }),
+    ]);
+
+    const dWeek    = await rWeek.json();
+    const dShabbat = await rShabbat.json();
+
+    if (dWeek.error) throw new Error(dWeek.error.message);
+
+    prayerHTMLWeekday = buildPrayerHTML(dWeek.values   || []);
+    prayerHTMLShabbat = buildShabbatPrayerHTML(dShabbat.values || []);
+    storePrayerRowsForNext(dWeek.values || [], dShabbat.values || []);
+
+    // Show first enabled panel
+    if (showChol) {
+      prayerViewMode    = 'weekday';
+      body.innerHTML    = prayerHTMLWeekday;
+      title.textContent = 'זמני תפילה חול';
+    } else if (showShabbat) {
+      prayerViewMode    = 'shabbat';
+      body.innerHTML    = prayerHTMLShabbat;
+      title.textContent = 'זמני תפילה שבת';
+    } else if (showHag) {
+      prayerViewMode    = 'hag';
+      body.innerHTML    = prayerHTMLHag;
+      title.textContent = 'זמני תפילת חג';
+    }
+    setTimeout(() => {
+      const delay = setPrayerScrollDuration(body.scrollHeight);
+      schedulePrayerSwitch(delay);
+    }, 100);
+
+    // Left panel: start with 20s for זמני היום, then 10s for שיעורים
+    scheduleLeftPanel(20000);
+
+  } catch(e) {
+    body.innerHTML = `<div class="error-text">⚠️ שגיאה בטעינת תפילות</div>
+      <div style="padding:12px; direction:rtl; font-size:0.78rem; color:var(--text-dim); line-height:2;">
+        <b>מבנה נדרש בגיליון PrayerTimes:</b><br>
+        חול: עמודות A (שם) / B (שעה) / C (קטגוריה)<br>
+        שבת: עמודות E (שם) / F (שעה) / G (קטגוריה)<br>
+        <br>⚙️ הגדר SHEET_ID ב-CONFIG
+      </div>`;
+  }
+}
+
+// ══════════════════════════════════════════════
+// GOOGLE SHEETS — הודעות
+// ══════════════════════════════════════════════
+async function loadAnnouncements() {
+  const scroll = document.getElementById('ann-scroll');
+  try {
+    const token = await getAccessToken();
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${ACTIVE_SHEET_ID}/values/${CONFIG.ANN_RANGE}`;
+    const r = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    const data = await r.json();
+    if (data.error) throw new Error(data.error.message);
+
+    const rows = (data.values || []).filter(row => {
+      const [title, , , , visible] = row;
+      if (!title) return false;
+      return visible === undefined || visible === '' || visible === '1';
+    });
+    if (!rows.length) {
+      scroll.innerHTML = '<div class="loading-text">אין הודעות</div>';
+      setScrollDuration(0);
+      return;
+    }
+
+    // Cols: A=title, B=body, C=date, D=type (urgent/shabbat/event)
+    const cards = rows.map(row => {
+      const [title, body, date, type] = row;
+      if (!title) return '';
+      const typeClass = (type || '').toLowerCase().includes('הודעה') ? 'urgent' :
+                        (type || '').toLowerCase().includes('שבת')  ? 'shabbat' : 'event';
+      const tagLabel  = typeClass === 'urgent' ? '⚠️ הודעה' :
+                        typeClass === 'shabbat' ? '✡ שבת' : '📅 אירוע';
+      return `
+        <div class="announcement-card ${typeClass}">
+          <span class="ann-tag ${typeClass}">${tagLabel}</span>
+          ${date ? `<div class="ann-date">${date}</div>` : ''}
+          <div class="ann-title">${title}</div>
+          ${body ? `<div class="ann-body">${body}</div>` : ''}
+        </div>`;
+    }).join('');
+
+    scroll.innerHTML = cards; // single pass — loop handled by animation restart
+    setScrollDuration(rows.length);
+  } catch(e) {
+    scroll.innerHTML = `<div class="error-text">⚠️ שגיאה בטעינת הודעות</div>
+      <div style="padding:12px; direction:rtl; font-size:0.78rem; color:var(--text-dim); line-height:2;">
+        <b>מבנה נדרש בגיליון Announcements:</b><br>
+        עמודה A: כותרת ההודעה<br>
+        עמודה B: תוכן ההודעה<br>
+        עמודה C: תאריך (אופציונלי)<br>
+        עמודה D: סוג (דחוף / שבת / אירוע)<br>
+        <br>⚙️ הגדר SHEET_ID ו-API_KEY ב-CONFIG
+      </div>`;
+  }
+}
+
+function setScrollDuration(count) {
+  const wrapper  = document.getElementById('ann-wrapper');
+  const scroll   = document.getElementById('ann-scroll');
+  const height   = wrapper.clientHeight;
+  const duration = Math.max(count * 10, 25); // seconds (slowed down)
+  scroll.style.animationDuration = `${duration}s`;
+}
+
+// ══════════════════════════════════════════════
+// PARASHA (Hebcal)
+// ══════════════════════════════════════════════
+async function loadParasha() {
+  try {
+    const now = new Date();
+    const url = `https://www.hebcal.com/shabbat?cfg=json&latitude=${siteLat}&longitude=${siteLng}&tzid=Asia/Jerusalem&m=50`;
+    const r = await fetch(url);
+    const data = await r.json();
+    const parasha = data.items?.find(i => i.category === 'parashat');
+    if (parasha) {
+      const parashaName = parasha.hebrew || parasha.title || '';
+      // Hebcal sometimes includes "פרשת" already — avoid doubling
+      const parashaText = parashaName.startsWith('פרשת') ? parashaName : `פרשת ${parashaName}`;
+      document.getElementById('parasha-header').textContent = parashaText;
+    }
+  } catch(e) {}
+}
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+async function init() {
+  updateGregorianDate();
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Load settings first (display toggles, synagogue name, location) — zmanim/parasha
+  // below depend on siteLat/siteLng being correct before they fetch.
+  await loadSettings();
+
+  await Promise.all([
+    loadHebrewDate(),
+    loadZmanim(),
+    loadHag(),
+    loadPrayerTimes(),
+    loadAnnouncements(),
+    loadParasha(),
+    loadShiurim(),
+    loadRoshChodesh(),
+    loadOmer(),
+  ]);
+
+  // loadHag() and loadPrayerTimes() run concurrently above, so re-run once both
+  // are guaranteed to have finished, ensuring the חג override has fresh row data.
+  updateNextPrayer();
+
+  renderFooterCenter();
+
+  // Re-highlight next zman every minute
+  setInterval(loadZmanim, 60 * 1000);
+
+  // Alternate footer center between next-prayer, ראש חודש, and ספירת העומר (whichever apply) every 6s
+  if (footerAlternateTimer) clearInterval(footerAlternateTimer);
+  footerAlternateTimer = setInterval(tickFooterAlternate, 6000);
+}
+
+init();
+</script>
+</body>
+</html>
