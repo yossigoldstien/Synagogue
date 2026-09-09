@@ -854,6 +854,7 @@ let rawHagDay2Rows = []; // חג rows tagged as day 2 (col E anything else)
 let nextPrayerLine1 = '—';
 let nextPrayerLine2 = '';
 let lastNextPrayerMinuteKey = '';
+let lastZmanimAutoRefreshKey = ''; // 'HH:MM' of the last scheduled (00:00 / שקיעה) zmanim refresh, to avoid repeat triggers within the same minute
 
 // ראש חודש state
 let roshChodeshInfo   = null; // { title, hebrew, dates: ['YYYY-MM-DD', ...] }
@@ -1212,6 +1213,17 @@ function updateClock() {
   if (currentMinuteKey !== lastNextPrayerMinuteKey) {
     lastNextPrayerMinuteKey = currentMinuteKey;
     updateNextPrayer();
+  }
+
+  // Zmanim refresh — scheduled exactly twice a day: at 00:00 (start of day) and
+  // at שקיעה (sunset), instead of polling every minute. Guarded by
+  // lastZmanimAutoRefreshKey so it only fires once per matching minute.
+  const sunsetKey = todaySunsetMin !== null
+    ? `${String(Math.floor(todaySunsetMin / 60)).padStart(2, '0')}:${String(todaySunsetMin % 60).padStart(2, '0')}`
+    : null;
+  if ((currentMinuteKey === '00:00' || currentMinuteKey === sunsetKey) && currentMinuteKey !== lastZmanimAutoRefreshKey) {
+    lastZmanimAutoRefreshKey = currentMinuteKey;
+    loadZmanim();
   }
 
   // Midnight refresh
@@ -1995,8 +2007,8 @@ async function init() {
 
   renderFooterCenter();
 
-  // Re-highlight next zman every minute
-  setInterval(loadZmanim, 60 * 1000);
+  // Zmanim refresh is now scheduled precisely (00:00 and שקיעה) inside updateClock(),
+  // not polled every minute — see lastZmanimAutoRefreshKey below.
 
   // Alternate footer center between next-prayer, ראש חודש, and ספירת העומר (whichever apply) every 6s
   if (footerAlternateTimer) clearInterval(footerAlternateTimer);
