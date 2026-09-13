@@ -747,7 +747,7 @@ const CONFIG = {
   ANN_RANGE:     'Announcements!A2:E51',
   SHIURIM_RANGE: 'שיעורים!A2:F51',
   HAG_RANGE:     'חג!A2:E51',
-  SETTINGS_RANGE: 'Settings!A2:J2',
+  SETTINGS_RANGE: 'Settings!A2:K2',
 
   // Service Account
   SERVICE_ACCOUNT_EMAIL: 'beit-knesset-display@beit-knesset-display.iam.gserviceaccount.com',
@@ -890,12 +890,14 @@ function updateNextPrayer() {
 
   let candidates = [];
 
-  // חג override: fully manual (client's choice) — day 1/day 2 are mutually exclusive
-  // toggles set by the admin, not tied to any particular day of the week. Whichever
-  // one is currently ON is "today" for next-prayer purposes — never both, never mixed.
+  // חג override: fully automatic, based on the actual day of the week. Admin sets
+  // hagDay1Weekday once (which weekday day 1 falls on); day 2 is always the very next
+  // day, so it's never stored — just computed. Consecutive days always have different
+  // weekdays, so these two conditions can never both match "today" — no mixing risk.
+  const hagDay2Weekday = (hagDay1Weekday + 1) % 7;
   const hagToday =
-    (showHag && showHagDay1) ? rawHagDay1Rows :
-    (showHag && showHagDay2) ? rawHagDay2Rows :
+    (showHag && showHagDay1 && day === hagDay1Weekday) ? rawHagDay1Rows :
+    (showHag && showHagDay2 && rawHagDay2Rows.length && day === hagDay2Weekday) ? rawHagDay2Rows :
     null;
 
   if (hagToday) {
@@ -1418,8 +1420,9 @@ let prayerHTMLHag     = '';
 let showChol    = true;
 let showShabbat = true;
 let showHag     = false;
-let showHagDay1 = true;  // חג day 1 — manual, mutually exclusive with day 2, checked by default
-let showHagDay2 = false; // חג day 2 — manual, mutually exclusive with day 1, unchecked by default
+let showHagDay1 = true;  // חג day 1 — enabled by default
+let showHagDay2 = false; // חג day 2 — disabled by default, also auto-hidden if no rows exist for it
+let hagDay1Weekday = 0;  // day-of-week (0=Sunday...6=Saturday) that day 1 of the חג falls on this time; day 2 is always the next day after this
 let prayerViewMode = 'weekday';
 
 // Synagogue name — configurable via Settings sheet column D, falls back to this default
@@ -1742,13 +1745,16 @@ async function loadSettings() {
     showChol    = settingsRow[0] === undefined || settingsRow[0] === '' || settingsRow[0] === '1';
     showShabbat = settingsRow[1] === undefined || settingsRow[1] === '' || settingsRow[1] === '1';
     showHag     = settingsRow[2] === '1';
-    // חג day toggles (columns I/J) — two-day חג support. Fully manual, mutually
-    // exclusive: the Android app enforces that turning one on turns the other off,
-    // since a חג isn't tied to any specific day of the week.
+    // חג day toggles (columns I/J) — two-day חג support. A חג isn't tied to any
+    // specific day of the week, so column K stores which weekday (0=Sunday...6=Saturday)
+    // day 1 falls on this time; day 2 is always calculated as the very next day.
     // Day 1: checked by default (only '0' turns it off).
-    // Day 2: unchecked by default (only '1' turns it on).
+    // Day 2: unchecked by default (only '1' turns it on) — also auto-hidden below if
+    // there are no actual day-2 rows in the חג sheet, regardless of this toggle.
     showHagDay1 = settingsRow[8] !== '0';
     showHagDay2 = settingsRow[9] === '1';
+    const parsedWeekday = parseInt(settingsRow[10], 10);
+    hagDay1Weekday = (!isNaN(parsedWeekday) && parsedWeekday >= 0 && parsedWeekday <= 6) ? parsedWeekday : 0;
     // Fallback: always show חול
     if (!showChol && !showShabbat && !showHag) showChol = true;
 
@@ -1802,10 +1808,6 @@ async function loadHag() {
     });
 
     // Column E marks which חג day a row belongs to — blank/'1' = day 1, anything else = day 2.
-    // Day 1 and day 2 are mutually exclusive toggles set manually by the admin (not tied to
-    // any particular day of the week — a חג can fall on any days), so at most one of
-    // showHagDay1/showHagDay2 is ever true at once. No two-section split is needed: we just
-    // show whichever single day's rows are currently active.
     const isDay1Row = r => r[4] === undefined || r[4] === '' || r[4] === '1';
 
     rawHagDay1Rows = rows.filter(isDay1Row);
@@ -1823,17 +1825,34 @@ async function loadHag() {
         </div>`;
     };
 
-    const activeRows = showHagDay2 ? rawHagDay2Rows : rawHagDay1Rows;
-
-    if (!activeRows.length) {
+    if (!rows.length) {
       prayerHTMLHag = '<div class="loading-text">אין תפילות חג</div>';
       return;
     }
 
-    const sorted = [...activeRows].sort((a, b) => toMin(a[1]) - toMin(b[1]));
-    let html = '';
-    sorted.forEach(row => { html += rowHtml(row); });
-    prayerHTMLHag = html ? `<div class="prayer-section">${html}</div>` : '<div class="loading-text">אין תפילות חג</div>';
+    // Two-day mode only kicks in when day 2 is enabled AND actually has prayers —
+    // otherwise fall back to the flat single-day view (day 2 auto-hides with no rows).
+    if (showHagDay2 && rawHagDay2Rows.length) {
+      const day1Sorted = [...rawHagDay1Rows].sort((a, b) => toMin(a[1]) - toMin(b[1]));
+      const day2Sorted = [...rawHagDay2Rows].sort((a, b) => toMin(a[1]) - toMin(b[1]));
+
+      let html = '';
+      if (day1Sorted.length) {
+        html += `<div class="prayer-section-title">חג ראשון</div>`;
+        day1Sorted.forEach(row => { html += rowHtml(row); });
+      }
+      if (day2Sorted.length) {
+        html += `<div class="prayer-section-title prayer-section-title--shabbat">חג שני</div>`;
+        day2Sorted.forEach(row => { html += rowHtml(row); });
+      }
+      prayerHTMLHag = html ? `<div class="prayer-section">${html}</div>` : '<div class="loading-text">אין תפילות חג</div>';
+    } else {
+      // Single-day view — flat list, no headers
+      const sorted = [...rawHagDay1Rows].sort((a, b) => toMin(a[1]) - toMin(b[1]));
+      let html = '';
+      sorted.forEach(row => { html += rowHtml(row); });
+      prayerHTMLHag = html ? `<div class="prayer-section">${html}</div>` : '<div class="loading-text">אין תפילות חג</div>';
+    }
   } catch(e) {
     prayerHTMLHag = '<div class="loading-text">אין תפילות חג</div>';
     rawHagDay1Rows = [];
