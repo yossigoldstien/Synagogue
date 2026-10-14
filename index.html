@@ -276,6 +276,12 @@
   }
 
   /* ── ZMANIM ── */
+  .zman-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
   .zman-row {
     display: flex;
     align-items: center;
@@ -651,7 +657,7 @@
       font-size: 1.5rem;
     }
     .next-prayer-line1.rc-mode {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
     }
     .next-prayer-line2 {
       font-size: 0.75rem;
@@ -1314,12 +1320,13 @@ async function loadZmanim() {
       if (rows[i].zMins > nowMins) { nextIdx = i; break; }
     }
 
-    body.innerHTML = rows.map((z, i) => `
+    body.innerHTML = '<div class="zman-inner" id="zman-inner">' + rows.map((z, i) => `
       <div class="zman-row ${z.highlight ? 'highlight' : ''} ${i === nextIdx ? 'next-zman' : ''}">
         <span class="zman-name">${z.label}${i === nextIdx ? ' ◀' : ''}</span>
         <span class="zman-time">${z.timeStr}</span>
       </div>
-    `).join('');
+    `).join('') + '</div>';
+    refreshZmanimScrollIfVisible();
 
     // Update shabbat in footer
     if (data.candleLighting) {
@@ -1379,12 +1386,13 @@ async function loadZmanimFallback() {
       if (rows[i].zMins > nowMins) { nextIdx = i; break; }
     }
 
-    body.innerHTML = rows.map((z, i) => `
+    body.innerHTML = '<div class="zman-inner" id="zman-inner">' + rows.map((z, i) => `
       <div class="zman-row ${i === nextIdx ? 'next-zman' : ''}">
         <span class="zman-name">${z.label}${i === nextIdx ? ' ◀' : ''}</span>
         <span class="zman-time">${z.timeStr}</span>
       </div>
-    `).join('');
+    `).join('') + '</div>';
+    refreshZmanimScrollIfVisible();
 
     // Shabbat
     if (data.times.candles) {
@@ -1584,6 +1592,53 @@ function buildShiurimHTML(rows, isWeekday) {
 
 let leftPanelTimer = null;
 
+// ── זמני היום auto-scroll (same speed as the prayer-times panel: 18px/s, 4s hold) ──
+const ZMANIM_MIN_SHOW_MS = 20000;
+function applyZmanimScroll() {
+  const body  = document.getElementById('zmanim-body');
+  const inner = document.getElementById('zman-inner');
+  if (!body || !inner || body.style.display === 'none') return ZMANIM_MIN_SHOW_MS;
+
+  inner.style.animation = 'none';
+  inner.style.transform = 'translateY(0)';
+  void inner.offsetWidth;
+
+  const cs = getComputedStyle(body);
+  const available = body.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+  const overflow  = inner.scrollHeight - available;
+  if (overflow <= 1) return ZMANIM_MIN_SHOW_MS; // fits — no scroll
+
+  const scrollPx   = Math.ceil(overflow) + 8;
+  const holdSecs   = 4;
+  const scrollSecs = scrollPx / 18;
+  const totalSecs  = holdSecs + scrollSecs + 3; // + short pause at the bottom
+  const holdPct    = (holdSecs / totalSecs) * 100;
+  const endPct     = ((holdSecs + scrollSecs) / totalSecs) * 100;
+
+  let styleEl = document.getElementById('zmanim-scroll-style');
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = 'zmanim-scroll-style';
+    document.head.appendChild(styleEl);
+  }
+  styleEl.textContent = `
+    @keyframes zmanim-scroll-dynamic {
+      0%        { transform: translateY(0); }
+      ${holdPct}% { transform: translateY(0); }
+      ${endPct}%  { transform: translateY(-${scrollPx}px); }
+      100%      { transform: translateY(-${scrollPx}px); }
+    }`;
+  inner.style.animation = `zmanim-scroll-dynamic ${totalSecs}s linear 1 forwards`;
+  return Math.max(ZMANIM_MIN_SHOW_MS, (totalSecs + 1) * 1000);
+}
+
+// Called after zmanim are (re)rendered while the panel is on screen
+function refreshZmanimScrollIfVisible() {
+  if (leftPanelMode !== 'zmanim') return;
+  const ms = applyZmanimScroll();
+  if (leftPanelTimer) scheduleLeftPanel(ms);
+}
+
 function scheduleLeftPanel(delayMs) {
   if (leftPanelTimer) clearTimeout(leftPanelTimer);
   leftPanelTimer = setTimeout(switchLeftPanel, delayMs);
@@ -1621,7 +1676,7 @@ function switchLeftPanel() {
       zmanimBody.style.opacity  = '1';
       title.textContent = 'זמני היום';
       icon.textContent  = '🌅';
-      scheduleLeftPanel(20000); // זמני היום shows for 20s
+      scheduleLeftPanel(applyZmanimScroll()); // זמני היום: 20s min, longer if scrolling
     }
     title.style.opacity = '1';
   }, 500);
@@ -1908,7 +1963,7 @@ async function loadPrayerTimes() {
     }, 100);
 
     // Left panel: start with 20s for זמני היום, then 10s for שיעורים
-    scheduleLeftPanel(20000);
+    scheduleLeftPanel(applyZmanimScroll());
 
   } catch(e) {
     body.innerHTML = `<div class="error-text">⚠️ שגיאה בטעינת תפילות</div>
@@ -1950,7 +2005,7 @@ async function loadAnnouncements() {
       if (!title) return '';
       const typeClass = (type || '').toLowerCase().includes('הודעה') ? 'urgent' :
                         (type || '').toLowerCase().includes('שבת')  ? 'shabbat' : 'event';
-      const tagLabel  = typeClass === 'urgent' ? '⚠️ הודעה' :
+      const tagLabel  = typeClass === 'urgent' ? 'הודעה' :
                         typeClass === 'shabbat' ? '✡ שבת' : '📅 אירוע';
       return `
         <div class="announcement-card ${typeClass}">
