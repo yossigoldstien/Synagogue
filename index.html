@@ -869,6 +869,9 @@ let rawHagDay2Rows = []; // חג rows tagged as day 2 (col E anything else)
 let nextPrayerLine1 = '—';
 let nextPrayerLine2 = '';
 let lastNextPrayerMinuteKey = '';
+let lastDailyRefreshDay = '';   // toDateString of the day the 00:00 refresh last ran
+let sunsetRefreshedDay  = '';   // toDateString of the day the שקיעה refresh last ran
+let refreshInProgress   = false;
 let lastZmanimAutoRefreshKey = ''; // 'HH:MM' of the last scheduled (00:00 / שקיעה) zmanim refresh, to avoid repeat triggers within the same minute
 
 // ראש חודש state
@@ -1232,23 +1235,67 @@ function updateClock() {
   if (currentMinuteKey !== lastNextPrayerMinuteKey) {
     lastNextPrayerMinuteKey = currentMinuteKey;
     updateNextPrayer();
+    updateZmanimHighlight();
   }
 
-  // Zmanim refresh — scheduled exactly twice a day: at 00:00 (start of day) and
-  // at שקיעה (sunset), instead of polling every minute. Guarded by
-  // lastZmanimAutoRefreshKey so it only fires once per matching minute.
-  const sunsetKey = todaySunsetMin !== null
-    ? `${String(Math.floor(todaySunsetMin / 60)).padStart(2, '0')}:${String(todaySunsetMin % 60).padStart(2, '0')}`
-    : null;
-  if ((currentMinuteKey === '00:00' || currentMinuteKey === sunsetKey) && currentMinuteKey !== lastZmanimAutoRefreshKey) {
-    lastZmanimAutoRefreshKey = currentMinuteKey;
-    loadZmanim();
+  // FULL refresh — exactly twice a day: at 00:00 (new day) and at שקיעה (sunset).
+  // Uses date/threshold comparisons (not exact-second matching) so a skipped tick
+  // or a sleeping tab can't make us miss it.
+  if (lastDailyRefreshDay) {
+    const todayKey = now.toDateString();
+    const nowTotalMin = now.getHours() * 60 + now.getMinutes();
+    if (todayKey !== lastDailyRefreshDay) {
+      lastDailyRefreshDay = todayKey;
+      sunsetRefreshedDay  = '';
+      refreshAll();
+    } else if (todaySunsetMin !== null && nowTotalMin >= todaySunsetMin && sunsetRefreshedDay !== todayKey) {
+      sunsetRefreshedDay = todayKey;
+      refreshAll();
+    }
   }
+}
 
-  // Midnight refresh
-  if (h === '00' && m === '01' && s === '00') {
-    location.reload();
+// Re-fetch EVERYTHING (settings, sheets, Hebcal, zmanim). Runs at 00:00 and שקיעה only.
+async function refreshAll() {
+  if (refreshInProgress) return;
+  refreshInProgress = true;
+  try {
+    updateGregorianDate();
+    await loadSettings();
+    await Promise.all([
+      loadHebrewDate(),
+      loadZmanim(),
+      loadHag(),
+      loadPrayerTimes(),
+      loadAnnouncements(),
+      loadParasha(),
+      loadShiurim(),
+      loadRoshChodesh(),
+      loadOmer(),
+    ]);
+    updateNextPrayer();
+    renderFooterCenter();
+  } finally {
+    refreshInProgress = false;
   }
+}
+
+// Local-only (no network): moves the ◀ "next zman" marker as the day passes.
+function updateZmanimHighlight() {
+  const now = new Date();
+  const nowMins = now.getHours() * 60 + now.getMinutes();
+  let found = false;
+  document.querySelectorAll('#zman-inner .zman-row').forEach(row => {
+    const t = row.querySelector('.zman-time');
+    const n = row.querySelector('.zman-name');
+    if (!t || !n) return;
+    const [h, m] = t.textContent.trim().split(':').map(Number);
+    if (isNaN(h) || isNaN(m)) return;
+    const isNext = !found && (h * 60 + m) > nowMins;
+    if (isNext) found = true;
+    row.classList.toggle('next-zman', isNext);
+    n.textContent = n.textContent.replace(' ◀', '') + (isNext ? ' ◀' : '');
+  });
 }
 
 function updateGregorianDate() {
@@ -1263,7 +1310,8 @@ function updateGregorianDate() {
 async function loadHebrewDate() {
   try {
     const now = new Date();
-    const url = `https://www.hebcal.com/converter?cfg=json&gy=${now.getFullYear()}&gm=${now.getMonth()+1}&gd=${now.getDate()}&g2h=1`;
+    const afterSunset = (todaySunsetMin !== null && (now.getHours()*60 + now.getMinutes()) >= todaySunsetMin) ? '&gs=on' : '';
+    const url = `https://www.hebcal.com/converter?cfg=json&gy=${now.getFullYear()}&gm=${now.getMonth()+1}&gd=${now.getDate()}&g2h=1${afterSunset}`;
     const r = await fetch(url);
     const d = await r.json();
     document.getElementById('heb-date').textContent = d.hebrew || '';
@@ -2090,6 +2138,13 @@ async function init() {
 
   // Zmanim refresh is now scheduled precisely (00:00 and שקיעה) inside updateClock(),
   // not polled every minute — see lastZmanimAutoRefreshKey below.
+
+  // Arm the twice-a-day refresh (00:00 + שקיעה) now that the first load is done.
+  {
+    const n = new Date();
+    lastDailyRefreshDay = n.toDateString();
+    sunsetRefreshedDay  = (todaySunsetMin !== null && (n.getHours()*60 + n.getMinutes()) >= todaySunsetMin) ? lastDailyRefreshDay : '';
+  }
 
   // Alternate footer center between next-prayer, ראש חודש, and ספירת העומר (whichever apply) every 6s
   if (footerAlternateTimer) clearInterval(footerAlternateTimer);
